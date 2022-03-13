@@ -27,8 +27,9 @@ class Wheel: CAShapeLayer, CAAnimationDelegate {
         //  0 <= angle for each slice <= 2 * pi,
         let eachSliceRadian = totalRadian / CGFloat(numOfSlices.count)
         var start: CGFloat = 0
-        for option in numOfSlices {
-            let arc1 = Arc(text: option, centerPoint: centerPoint, start: start, end: start + eachSliceRadian, fillColor: UIColor.yellow.cgColor, radius: radius)
+        let sliceColors: [UIColor] = [.yellow, .green, .cyan, .systemGray6]
+        for (index, option) in numOfSlices.enumerated() {
+            let arc1 = Arc(text: option, centerPoint: centerPoint, start: start, end: start + eachSliceRadian, fillColor: sliceColors[index % 4].cgColor, radius: radius)
             arc1.frame = self.bounds
             slices.append(arc1)
             start += eachSliceRadian

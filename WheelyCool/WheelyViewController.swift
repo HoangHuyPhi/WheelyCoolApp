@@ -56,7 +56,7 @@ class WheelyViewController: UIViewController {
     private func updateButtonsAndLabels() {
         if (isSpinning) {
             spinButton?.isEnabled = false
-            resultLabel?.text = "Waiting for results...!!"
+            resultLabel?.text = "Spinning...!!"
         } else {
             spinButton?.isEnabled = true
             if (results.count == 1) {
@@ -113,7 +113,7 @@ extension WheelyViewController {
             return
         }
         view.addSubview(spinButton)
-        spinButton.backgroundColor = .green
+        spinButton.backgroundColor = .systemRed
         spinButton.translatesAutoresizingMaskIntoConstraints = false
         spinButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -56).isActive = true
         spinButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
@@ -123,7 +123,7 @@ extension WheelyViewController {
         spinButton.layer.cornerRadius = 10
         spinButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         spinButton.setTitle("Spin", for: .normal)
-        spinButton.titleLabel?.textColor = .black
+        spinButton.setTitleColor(UIColor.white, for: .normal)
         
         spinButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(spinWheel)))
     }

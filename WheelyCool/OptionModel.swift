@@ -7,6 +7,7 @@
 
 import Foundation
 
-struct Option {
+struct Option: Codable {
     let text: String
 }
+

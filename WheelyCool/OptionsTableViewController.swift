@@ -7,20 +7,12 @@
 
 import UIKit
 
-
 class OptionsTableViewController: UIViewController {
     
     let tableView  = UITableView()
     let cellID = "OptionCell"
     
-    var options: [Option] = [
-        Option(text: "100$"),
-        Option(text: "1000$"),
-        Option(text: "250$"),
-        Option(text: "125$"),
-        Option(text: "10000$"),
-        Option(text: "5000$"),
-    ]
+    var options: [Option] = []
     
     var goToWheelButton: UIButton?
     
@@ -28,11 +20,43 @@ class OptionsTableViewController: UIViewController {
         super.viewDidLoad()
         title = "Edit Options"
         view.backgroundColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         configureTableView()
-        // create add button
+        generateAddButton()
+        generateGotoWheelButton()
+        
+        setUpNotificationCenter()
+
+        loadingData()
+    }
+    
+    private func loadingData() {
+        
+        // loading data
+        let data = getDataFromUserDefault()
+        if let data = data {
+            options = data
+        } else {
+            // initial loading
+            initializeData()
+        }
+    }
+    
+    private func initializeData() {
+        options =  [Option(text: "100$"),
+                    Option(text: "1000$"),
+                    Option(text: "250$"),
+                    Option(text: "125$"),
+                    Option(text: "10000$"),
+                    Option(text: "5000$"),
+        ]
+        saveDataToUserDefault()
+    }
+    
+    private func generateAddButton() {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
-        generateGotoWheelButton()
     }
     
     private func configureTableView() {
@@ -45,13 +69,17 @@ class OptionsTableViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
     }
     
+    private func setUpNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(saveDataToUserDefault), name: NSNotification.Name("SAVE_OPTIONS"), object: nil)
+    }
+    
     private func generateGotoWheelButton() {
         goToWheelButton = UIButton(type: .system)
         guard let goToWheelButton = goToWheelButton else {
             return
         }
         view.addSubview(goToWheelButton)
-        goToWheelButton.backgroundColor = .green
+        goToWheelButton.backgroundColor = .systemRed
         goToWheelButton.translatesAutoresizingMaskIntoConstraints = false
         goToWheelButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -56).isActive = true
         goToWheelButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
@@ -60,8 +88,8 @@ class OptionsTableViewController: UIViewController {
         goToWheelButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(goToWheelVC)))
         goToWheelButton.layer.cornerRadius = 10
         goToWheelButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        goToWheelButton.setTitle("Go to Wheel", for: .normal)
-        goToWheelButton.titleLabel?.textColor = .black
+        goToWheelButton.setTitle("Play", for: .normal)
+        goToWheelButton.setTitleColor(UIColor.white, for: .normal)
     }
     
     @objc func goToWheelVC() {
@@ -82,6 +110,28 @@ class OptionsTableViewController: UIViewController {
         }
     }
     
+    private func getDataFromUserDefault() -> [Option]?  {
+        let decoder = JSONDecoder()
+        let data = UserDefaults.standard.data(forKey: "Options")
+        if let data = data {
+            do {
+                return try decoder.decode([Option].self, from: data)
+            } catch {
+                print("Cannot load options")
+            }
+        }
+        return nil
+    }
+    
+    @objc private func saveDataToUserDefault() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(options) {
+            UserDefaults.standard.set(encoded, forKey: "Options")
+            print("Save options successfully")
+            return
+        }
+        print("Cannot save options")
+    }
     
 }
 
