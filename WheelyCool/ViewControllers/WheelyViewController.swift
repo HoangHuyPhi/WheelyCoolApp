@@ -15,7 +15,7 @@ class WheelyViewController: UIViewController {
     private var indicator: Indicator?
     private var isSpinning = false
     
-    private var spinButton: UIButton?
+    private var spinButton = WheelyButton(title: "Spin")
     
     // to calculate the ending destination of the wheel
     private var rotateTo: CGFloat?
@@ -55,10 +55,14 @@ class WheelyViewController: UIViewController {
     
     private func updateButtonsAndLabels() {
         if (isSpinning) {
-            spinButton?.isEnabled = false
+            spinButton.isEnabled = false
+            spinButton.backgroundColor = .gray
+            spinButton.alpha = 0.5
             resultLabel?.text = "Spinning...!!"
         } else {
-            spinButton?.isEnabled = true
+            spinButton.isEnabled = true
+            spinButton.backgroundColor = .red
+            spinButton.alpha = 1
             if (results.count == 1) {
                 resultLabel?.text = "You won " + Array(results)[0] + " 😀!"
             } else if (results.count == 2) {
@@ -67,7 +71,7 @@ class WheelyViewController: UIViewController {
         }
     }
     
-    private func onWheelStop(slices: ([Arc])) -> Void  {
+    private func onWheelStop(slices: ([Slice])) -> Void  {
         print("stop wheel")
         for slice in slices {
             let indicatorAngle: CGFloat = 0
@@ -108,23 +112,11 @@ extension WheelyViewController {
     }
     
     private func generateSpinButton() {
-        spinButton = UIButton(type: .system)
-        guard let spinButton = spinButton else {
-            return
-        }
         view.addSubview(spinButton)
-        spinButton.backgroundColor = .systemRed
-        spinButton.translatesAutoresizingMaskIntoConstraints = false
         spinButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -56).isActive = true
         spinButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
         spinButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
         spinButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        
-        spinButton.layer.cornerRadius = 10
-        spinButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        spinButton.setTitle("Spin", for: .normal)
-        spinButton.setTitleColor(UIColor.white, for: .normal)
-        
         spinButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(spinWheel)))
     }
     

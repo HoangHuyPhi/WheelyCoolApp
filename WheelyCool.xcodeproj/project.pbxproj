@@ -18,6 +18,9 @@
 		3A13BDE527DC5B3D00DD08EB /* Wheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A13BDE427DC5B3D00DD08EB /* Wheel.swift */; };
 		3A13BDE727DD98C400DD08EB /* OptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A13BDE627DD98C400DD08EB /* OptionsTableViewController.swift */; };
 		3A13BDE927DD997000DD08EB /* OptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A13BDE827DD997000DD08EB /* OptionModel.swift */; };
+		3A13BDF027DE196100DD08EB /* Slice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A13BDEF27DE196100DD08EB /* Slice.swift */; };
+		3A13BDF227DE199B00DD08EB /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A13BDF127DE199B00DD08EB /* Indicator.swift */; };
+		3A13BDF427DE1AC900DD08EB /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A13BDF327DE1AC900DD08EB /* CustomButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		3A13BDE427DC5B3D00DD08EB /* Wheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wheel.swift; sourceTree = "<group>"; };
 		3A13BDE627DD98C400DD08EB /* OptionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTableViewController.swift; sourceTree = "<group>"; };
 		3A13BDE827DD997000DD08EB /* OptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionModel.swift; sourceTree = "<group>"; };
+		3A13BDEF27DE196100DD08EB /* Slice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slice.swift; sourceTree = "<group>"; };
+		3A13BDF127DE199B00DD08EB /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
+		3A13BDF327DE1AC900DD08EB /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,15 +109,14 @@
 		3A13BDB327DC599800DD08EB /* WheelyCool */ = {
 			isa = PBXGroup;
 			children = (
+				3A13BDED27DE181800DD08EB /* Model */,
+				3A13BDEE27DE183100DD08EB /* View */,
+				3A13BDEC27DE17EF00DD08EB /* ViewControllers */,
 				3A13BDB427DC599800DD08EB /* AppDelegate.swift */,
 				3A13BDB627DC599800DD08EB /* SceneDelegate.swift */,
-				3A13BDB827DC599800DD08EB /* WheelyViewController.swift */,
 				3A13BDBD27DC599800DD08EB /* Assets.xcassets */,
 				3A13BDBF27DC599800DD08EB /* LaunchScreen.storyboard */,
 				3A13BDC227DC599800DD08EB /* Info.plist */,
-				3A13BDE427DC5B3D00DD08EB /* Wheel.swift */,
-				3A13BDE627DD98C400DD08EB /* OptionsTableViewController.swift */,
-				3A13BDE827DD997000DD08EB /* OptionModel.swift */,
 			);
 			path = WheelyCool;
 			sourceTree = "<group>";
@@ -131,6 +136,34 @@
 				3A13BDD727DC599800DD08EB /* WheelyCoolUITestsLaunchTests.swift */,
 			);
 			path = WheelyCoolUITests;
+			sourceTree = "<group>";
+		};
+		3A13BDEC27DE17EF00DD08EB /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3A13BDE627DD98C400DD08EB /* OptionsTableViewController.swift */,
+				3A13BDB827DC599800DD08EB /* WheelyViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3A13BDED27DE181800DD08EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3A13BDE827DD997000DD08EB /* OptionModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3A13BDEE27DE183100DD08EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3A13BDE427DC5B3D00DD08EB /* Wheel.swift */,
+				3A13BDEF27DE196100DD08EB /* Slice.swift */,
+				3A13BDF127DE199B00DD08EB /* Indicator.swift */,
+				3A13BDF327DE1AC900DD08EB /* CustomButton.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,10 +298,13 @@
 			files = (
 				3A13BDE727DD98C400DD08EB /* OptionsTableViewController.swift in Sources */,
 				3A13BDB927DC599800DD08EB /* WheelyViewController.swift in Sources */,
+				3A13BDF427DE1AC900DD08EB /* CustomButton.swift in Sources */,
 				3A13BDE927DD997000DD08EB /* OptionModel.swift in Sources */,
+				3A13BDF027DE196100DD08EB /* Slice.swift in Sources */,
 				3A13BDB527DC599800DD08EB /* AppDelegate.swift in Sources */,
 				3A13BDB727DC599800DD08EB /* SceneDelegate.swift in Sources */,
 				3A13BDE527DC5B3D00DD08EB /* Wheel.swift in Sources */,
+				3A13BDF227DE199B00DD08EB /* Indicator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

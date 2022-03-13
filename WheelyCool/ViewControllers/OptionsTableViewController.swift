@@ -14,7 +14,7 @@ class OptionsTableViewController: UIViewController {
     
     var options: [Option] = []
     
-    var goToWheelButton: UIButton?
+    var goToWheelButton = WheelyButton(title: "Play")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,25 +22,14 @@ class OptionsTableViewController: UIViewController {
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        loadingData()
+        
         configureTableView()
         generateAddButton()
         generateGotoWheelButton()
         
         setUpNotificationCenter()
-
-        loadingData()
-    }
-    
-    private func loadingData() {
         
-        // loading data
-        let data = getDataFromUserDefault()
-        if let data = data {
-            options = data
-        } else {
-            // initial loading
-            initializeData()
-        }
     }
     
     private func initializeData() {
@@ -51,7 +40,6 @@ class OptionsTableViewController: UIViewController {
                     Option(text: "10000$"),
                     Option(text: "5000$"),
         ]
-        saveDataToUserDefault()
     }
     
     private func generateAddButton() {
@@ -69,27 +57,13 @@ class OptionsTableViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
     }
     
-    private func setUpNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(saveDataToUserDefault), name: NSNotification.Name("SAVE_OPTIONS"), object: nil)
-    }
-    
     private func generateGotoWheelButton() {
-        goToWheelButton = UIButton(type: .system)
-        guard let goToWheelButton = goToWheelButton else {
-            return
-        }
         view.addSubview(goToWheelButton)
-        goToWheelButton.backgroundColor = .systemRed
-        goToWheelButton.translatesAutoresizingMaskIntoConstraints = false
         goToWheelButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -56).isActive = true
         goToWheelButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
         goToWheelButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
         goToWheelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         goToWheelButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(goToWheelVC)))
-        goToWheelButton.layer.cornerRadius = 10
-        goToWheelButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        goToWheelButton.setTitle("Play", for: .normal)
-        goToWheelButton.setTitleColor(UIColor.white, for: .normal)
     }
     
     @objc func goToWheelVC() {
@@ -108,6 +82,26 @@ class OptionsTableViewController: UIViewController {
                     self.tableView.insertRows(at: [IndexPath(row: self.options.count - 1, section: 0)], with: .automatic)}, completion: nil)
             }
         }
+    }
+    
+}
+
+// MARK: -- DATABASE METHODS
+extension OptionsTableViewController {
+    
+    private func loadingData() {
+        // loading data
+        let data = getDataFromUserDefault()
+        if let data = data {
+            options = data
+        } else {
+            // initial loading
+            initializeData()
+        }
+    }
+    
+    private func setUpNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(saveDataToUserDefault), name: NSNotification.Name("SAVE_OPTIONS"), object: nil)
     }
     
     private func getDataFromUserDefault() -> [Option]?  {
@@ -132,7 +126,6 @@ class OptionsTableViewController: UIViewController {
         }
         print("Cannot save options")
     }
-    
 }
 
 //MARK: -- Table View Methods
