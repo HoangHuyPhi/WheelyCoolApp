@@ -22,7 +22,7 @@ class WheelyViewController: UIViewController {
     
     // to display results
     private var resultLabel: UILabel?
-    var results: Set<String> = []
+    private var results: Set<String> = []
     
     init(slices: [String]) {
         super.init(nibName: nil, bundle: nil)
@@ -63,10 +63,12 @@ class WheelyViewController: UIViewController {
             spinButton.isEnabled = true
             spinButton.backgroundColor = .red
             spinButton.alpha = 1
+            let youWonText = "You won "
+            let emoji = " 😀!"
             if (results.count == 1) {
-                resultLabel?.text = "You won " + Array(results)[0] + " 😀!"
+                resultLabel?.text = youWonText + Array(results)[0] + emoji
             } else if (results.count == 2) {
-                resultLabel?.text = "You won " + Array(results)[0] + " and " + Array(results)[1] + " 😀!"
+                resultLabel?.text = youWonText + Array(results)[0] + " and " + Array(results)[1] + emoji
             }
         }
     }

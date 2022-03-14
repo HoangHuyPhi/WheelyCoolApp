@@ -9,12 +9,12 @@ import UIKit
 
 class OptionsTableViewController: UIViewController {
     
-    let tableView  = UITableView()
-    let cellID = "OptionCell"
+    private let tableView  = UITableView()
+    private let cellID = "OptionCell"
     
-    var options: [Option] = []
+    private var options: [Option] = []
     
-    var goToWheelButton = WheelyButton(title: "Play")
+    private var goToWheelButton = WheelyButton(title: "Play")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class OptionsTableViewController: UIViewController {
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        loadingData()
+        loadData()
         
         configureTableView()
         generateAddButton()
@@ -79,13 +79,11 @@ class OptionsTableViewController: UIViewController {
 // MARK: -- DATABASE METHODS
 extension OptionsTableViewController {
     
-    private func loadingData() {
-        // loading data
+    private func loadData() {
         let data = getDataFromUserDefault()
         if let data = data {
             options = data
         } else {
-            // initial loading
             initializeData()
         }
     }

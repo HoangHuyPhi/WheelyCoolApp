@@ -110,7 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				3A13BDED27DE181800DD08EB /* Model */,
-				3A13BDEE27DE183100DD08EB /* View */,
+				3A13BDEE27DE183100DD08EB /* Views */,
 				3A13BDEC27DE17EF00DD08EB /* ViewControllers */,
 				3A13BDB427DC599800DD08EB /* AppDelegate.swift */,
 				3A13BDB627DC599800DD08EB /* SceneDelegate.swift */,
@@ -155,7 +155,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		3A13BDEE27DE183100DD08EB /* View */ = {
+		3A13BDEE27DE183100DD08EB /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				3A13BDE427DC5B3D00DD08EB /* Wheel.swift */,
@@ -163,7 +163,7 @@
 				3A13BDF127DE199B00DD08EB /* Indicator.swift */,
 				3A13BDF327DE1AC900DD08EB /* CustomButton.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

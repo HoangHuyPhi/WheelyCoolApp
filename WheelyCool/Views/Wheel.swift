@@ -11,12 +11,12 @@ import UIKit
 
 class Wheel: CAShapeLayer, CAAnimationDelegate {
     
-    let totalRadian: CGFloat = 2 * .pi
-    var rotateTo: CGFloat?
+    private let totalRadian: CGFloat = 2 * .pi
+    private var rotateTo: CGFloat?
     
-    var slices: [Slice] = []
+    private var slices: [Slice] = []
     
-    var onCompletionHandler: ((_ slices: [Slice]) -> Void)?
+    private var onCompletionHandler: ((_ slices: [Slice]) -> Void)?
 
     init(centerPoint: CGPoint, numOfSlices: [String], radius: CGFloat) {
         super.init()
