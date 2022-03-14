@@ -66,7 +66,7 @@ class OptionsTableViewController: UIViewController {
     @objc func addButtonTapped() {
         showAlertWithTextField(title: "Add New Option", message: "Please enter a new option", placeholder: "New Option") { [weak self] res in
             guard let self = self else { return }
-            if (!res.isEmpty) {
+            if (!res.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
                 self.options.append(Option(text: res))
                 self.tableView.performBatchUpdates({
                     self.tableView.insertRows(at: [IndexPath(row: self.options.count - 1, section: 0)], with: .automatic)}, completion: nil)
