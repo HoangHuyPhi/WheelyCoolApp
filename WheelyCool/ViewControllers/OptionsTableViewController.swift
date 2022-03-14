@@ -32,16 +32,6 @@ class OptionsTableViewController: UIViewController {
         
     }
     
-    private func initializeData() {
-        options =  [Option(text: "100$"),
-                    Option(text: "1000$"),
-                    Option(text: "250$"),
-                    Option(text: "125$"),
-                    Option(text: "10000$"),
-                    Option(text: "5000$"),
-        ]
-    }
-    
     private func generateAddButton() {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
@@ -98,6 +88,17 @@ extension OptionsTableViewController {
             // initial loading
             initializeData()
         }
+    }
+    
+    
+    private func initializeData() {
+        options =  [Option(text: "100$"),
+                    Option(text: "1000$"),
+                    Option(text: "250$"),
+                    Option(text: "125$"),
+                    Option(text: "10000$"),
+                    Option(text: "5000$"),
+        ]
     }
     
     private func setUpNotificationCenter() {

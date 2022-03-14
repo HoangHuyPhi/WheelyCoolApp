@@ -75,7 +75,7 @@ class WheelyViewController: UIViewController {
         print("stop wheel")
         for slice in slices {
             let indicatorAngle: CGFloat = 0
-            // StartAngle > EndAngle means the pointer is on that slice
+            // StartAngle > EndAngle means the indicator is on that slice
             if (slice.startAngle > slice.endAngle) {
                 results.insert(slice.textSlice ?? "")
             }
